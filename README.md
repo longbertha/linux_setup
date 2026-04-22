@@ -57,7 +57,7 @@
 请使用 `root` 或具有 `sudo` 权限的用户执行：
 
 ```bash
-/bin/bash <(wget -qO - [https://raw.githubusercontent.com/longbertha/linux_setup/main/server-setup.sh](https://raw.githubusercontent.com/longbertha/linux_setup/main/server-setup.sh))
+/bin/bash <(wget -qO - https://raw.githubusercontent.com/longbertha/linux_setup/main/server-setup.sh)
 ````
 
 **备用链接与国内加速:**
