@@ -648,14 +648,14 @@ modify_swap_usage_threshold() {
 
 # --- 内核与网络优化模块 ---
 # 优化内核网络相关参数：启用 BBR 并根据 BDP 自适应网络调参
-optimize_kernel_parameters() {
-	local script_url="https://raw.githubusercontent.com/longbertha/linux_setup/main/optimize_kernel_parameters.sh"
+optimize_network_parameters() {
+	local script_url="https://raw.githubusercontent.com/longbertha/linux_setup/main/optimize_network.sh"
 
 	# 下载并通过管道传递给bash执行,
 	if bash <(wget -qO - "$script_url"); then
-		echo "内核参数优化器初始化..."
+		echo "网络优化器初始化..."
 	else
-		echo "内核参数优化器初始化失败"
+		echo "网络优化器初始化失败"
 		return 1
 	fi
 }
@@ -1069,8 +1069,8 @@ display_menu() {
 	echo -e "${GREEN} 8${RESET}       配置 ZRAM"
 	echo -e "${GREEN} 9${RESET}       修改 Swap 使用阈值 (Swappiness)"
 	echo -e "${GREEN} 10${RESET}      清理 Swap 缓存"
-	echo -e "${GREEN} 11${RESET}      优化内核参数"
-	echo -e "${GREEN} 13${RESET}      设置公共 DNS (CF/Google)"
+	echo -e "${GREEN} 11${RESET}      优化内核网络参数"
+	echo -e "${GREEN} 12${RESET}      设置公共 DNS (CF/Google)"
 
 	echo -e "----------------------------------------------------------"
 	echo -e "${BOLD}输入${RESET} 'q' ${BOLD}退出${RESET}"
@@ -1092,8 +1092,8 @@ handle_choice() {
 	8) configure_zram_menu ;;
 	9) modify_swap_usage_threshold ;;
 	10) cleanup_swap ;;
-	11) optimize_kernel_parameters ;;
-	13) set_dns_dhclient ;;
+	11) optimize_network_parameters ;;
+	12) set_dns_dhclient ;;
 	[qQ]) return 1 ;; # 返回非零值以退出主循环
 	*) echo "无效的选项，请输入正确的数字。" ;;
 	esac
